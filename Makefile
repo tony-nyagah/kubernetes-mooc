@@ -29,3 +29,5 @@ help:
 	git push origin HEAD
 	git push origin $@
 	gh release create $@ --title "$@" --notes "Exercise $@: $(DOCKER_USER)/$(APP):$@"
+	@echo ""
+	@echo "Submission link: $$(gh repo view --json url -q .url)/tree/$@"
