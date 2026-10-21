@@ -13,6 +13,9 @@ RUN CGO_ENABLED=0 go build -o /app .
 
 FROM scratch
 
+# Links the GHCR package to the repo.
+LABEL org.opencontainers.image.source=https://github.com/tony-nyagah/kubernetes-mooc
+
 # Copy the compiled binary from the build stage.
 COPY --from=build /app /app
 
