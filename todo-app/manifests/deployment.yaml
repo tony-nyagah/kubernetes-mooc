@@ -14,4 +14,7 @@ spec:
     spec:
       containers:
         - name: todo-app
-          image: ghcr.io/tony-nyagah/todo-app:1.4
+          image: ghcr.io/tony-nyagah/todo-app:1.5
+          env:
+            - name: PORT
+              value: 8080
