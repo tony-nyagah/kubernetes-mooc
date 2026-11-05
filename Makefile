@@ -33,8 +33,7 @@ login:
 define release
 @test -n "$(APP)" || { echo "Usage: make $@ APP=<app-folder>"; exit 1; }
 @test -d "$(APP)" || { echo "No such app folder: $(APP)"; exit 1; }
-docker build -t $(IMAGE_PREFIX)/$(APP):$@ $(APP)
-docker push $(IMAGE_PREFIX)/$(APP):$@
+docker buildx build --platform linux/amd64,linux/arm64 -t $(IMAGE_PREFIX)/$(APP):$@ --push $(APP)
 git add -A
 git diff --cached --quiet || git commit -m "feat($(APP)): exercise $@"
 git tag $@
