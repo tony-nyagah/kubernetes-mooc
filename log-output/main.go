@@ -1,9 +1,8 @@
 package main
 
 import (
-	"crypto/rand"
 	"fmt"
-	"math/big"
+	"math/rand/v2"
 	"time"
 )
 
@@ -12,11 +11,7 @@ const base36 = "0123456789abcdefghijklmnopqrstuvwxyz"
 func RandomHash(n int) string {
 	b := make([]byte, n)
 	for i := range b {
-		v, err := rand.Int(rand.Reader, big.NewInt(int64(len(base36))))
-		if err != nil {
-			panic(err)
-		}
-		b[i] = base36[v.Int64()]
+		b[i] = base36[rand.IntN(len(base36))]
 	}
 	return string(b)
 }
